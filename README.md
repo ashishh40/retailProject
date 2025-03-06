@@ -20,5 +20,8 @@
 - from controller to service, saw how i can save the data of registered user in DB
 - added a repository package and a class which can handle user Query 
 - successfully registered a user with the endpoint 
+- login functionality done
+- with the count and blocking functionality
+
 
 
