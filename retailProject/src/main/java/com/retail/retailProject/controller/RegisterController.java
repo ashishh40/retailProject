@@ -16,7 +16,7 @@ public class RegisterController {
     @Autowired
     public RegisterService registerService;
 
-    @PostMapping("/api/register")
+    @PostMapping("/register")
     public void registerUser(@RequestBody User user){
         registerService.registerUser(user);
     }

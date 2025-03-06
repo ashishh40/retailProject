@@ -19,4 +19,6 @@
 - Started working on the registration process 
 - from controller to service, saw how i can save the data of registered user in DB
 - added a repository package and a class which can handle user Query 
+- successfully registered a user with the endpoint 
+
 
