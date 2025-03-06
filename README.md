@@ -13,3 +13,10 @@
 - added the controller files which will handle the requests
 - the classes handle the registration request, login request
 - and the user and admin requests seperately.
+
+
+### 6/03/2025
+- Started working on the registration process 
+- from controller to service, saw how i can save the data of registered user in DB
+- added a repository package and a class which can handle user Query 
+
