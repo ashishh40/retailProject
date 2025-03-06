@@ -1,6 +1,7 @@
 package com.retail.retailProject.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -18,9 +19,15 @@ public class LoginController {
     public LoginService loginService;
 
     @PostMapping("/login/user")
-    public void loginUser(@RequestBody User user){
+    public ResponseEntity<String> loginUser(@RequestBody User user){
 
-        loginService.loginUser(user.getUsername(),user.getPassword());
+        try {
+            return loginService.loginUser(user.getUsername(),user.getPassword());
+            // return ResponseEntity.ok("User login successful!"+user.getUsername());  
+        } catch (Exception e) {
+            return ResponseEntity.badRequest().body("Error: " + e.getMessage());
+        }
+
     }
 }
 

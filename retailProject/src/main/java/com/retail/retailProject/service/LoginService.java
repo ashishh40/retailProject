@@ -3,6 +3,8 @@ package com.retail.retailProject.service;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -19,20 +21,43 @@ public class LoginService {
     @Autowired
     private PasswordEncoder passwordEncoder;
 
+    private int maxLoginAttempt=3;
 
-    public String loginUser(String username, String password) {
+
+    public ResponseEntity<String> loginUser(String username, String password) {
         Optional<User> userOptional = repo.findByUsername(username);
 
+
         if (userOptional.isEmpty()) {
-            return "User not found!";
+            return ResponseEntity.badRequest().body("User not found!");
         }
+
 
         User user = userOptional.get();
-        if (!passwordEncoder.matches(password, user.getPassword())) {
-            return "Invalid credentials!";
+
+        if (user.isBlocked()) {
+            return ResponseEntity.status(403).body("Your account is locked due to multiple failed login attempts.");
         }
 
-        System.out.println("login succesfull");
-        return "Login successful!";
+        if (!passwordEncoder.matches(password, user.getPassword())) {
+            
+            user.setCountOfLogin(user.getCountOfLogin()+1);
+            repo.save(user); 
+
+
+            if(user.getCountOfLogin()>=maxLoginAttempt){
+                user.setBlocked(true);
+                repo.save(user);
+            }
+           return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Invalid credentials!");
+
+        }
+
+        // System.out.println("login succesfull");
+        user.setCountOfLogin(0);
+        repo.save(user); 
+
+        System.out.println(user);
+        return ResponseEntity.ok("Login successful!");
     }
 }
