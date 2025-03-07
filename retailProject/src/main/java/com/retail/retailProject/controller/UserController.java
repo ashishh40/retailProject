@@ -41,6 +41,13 @@ public class UserController {
         return userService.deleteCart(userId,itemId);
     }
 
+
+    @PostMapping("/checkout/{userId}")
+    public ResponseEntity<String> checkout(@PathVariable int userId){
+        return userService.checkout(userId);
+
+    }
+
 }
 
 

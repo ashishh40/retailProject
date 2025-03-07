@@ -32,4 +32,8 @@
 - Added the functionality that a blocked user cant add to cart 
 - Added the get endpoint which fetches the data for the cart table for a particular user
 - Added the delete endpoint for cart 
+- Added the checkout endpoint just the functionality for fetching the data and just ouputing the total amount in cart
+- will have to finish the checkout endpoint 
+
+
 

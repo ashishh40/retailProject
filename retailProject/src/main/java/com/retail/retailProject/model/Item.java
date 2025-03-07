@@ -28,7 +28,7 @@ public class Item {
     private String description;
 
     @Column(nullable = false)
-    private BigDecimal price;
+    private Double price;
 }
 
 

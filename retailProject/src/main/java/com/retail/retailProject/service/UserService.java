@@ -72,4 +72,15 @@ public class UserService {
         cartRepo.deleteByUserUserIdAndItemItemId(userId,itemId);
         return ResponseEntity.ok("deleted from cart successful!");
     }
+
+    @Transactional
+    public ResponseEntity<String> checkout(int userId){
+        User user=userRepo.findById(userId).get();
+
+        List<Cart> cartList=cartRepo.findByUser(user);
+
+        Double totalAmount = cartList.stream().mapToDouble(cart-> cart.getItem().getPrice()).sum();
+
+        return ResponseEntity.ok( totalAmount.toString());
+    }
 }
