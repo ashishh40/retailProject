@@ -15,6 +15,8 @@ import com.retail.retailProject.repository.CartRepository;
 import com.retail.retailProject.repository.ItemRepository;
 import com.retail.retailProject.repository.UserRepository;
 
+import jakarta.transaction.Transactional;
+
 @Service
 public class UserService {
 
@@ -55,11 +57,19 @@ public class UserService {
     }
 
     public List<Cart> getCart(int userId){
-        Optional<User> userOptional = userRepo.findById(userId);
+        Optional<User> userOptional=userRepo.findById(userId);
+
         if(userOptional.isEmpty()){
             throw new IllegalArgumentException("User not found!");
         }
 
         return cartRepo.findByUser(userOptional.get());
+    }
+
+    @Transactional
+    public ResponseEntity<String> deleteCart(int userId,int itemId){
+        // Optional<User> userOptional=userRepo.findById(userId);
+        cartRepo.deleteByUserUserIdAndItemItemId(userId,itemId);
+        return ResponseEntity.ok("deleted from cart successful!");
     }
 }

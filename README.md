@@ -31,4 +31,5 @@
 - will be working on cart endpoints next
 - Added the functionality that a blocked user cant add to cart 
 - Added the get endpoint which fetches the data for the cart table for a particular user
+- Added the delete endpoint for cart 
 
