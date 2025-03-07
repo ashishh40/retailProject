@@ -24,4 +24,10 @@
 - with the count and blocking functionality
 
 
+### 7/03/2025
+- started to work on adding to the cart 
+- added a endpoint which takes stores into the cart database the item which was stored and the user who stored it 
+- have to stop a blocked user from adding the item
+- will be working on cart endpoints next
+
 

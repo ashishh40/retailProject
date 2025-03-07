@@ -8,16 +8,18 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import lombok.AllArgsConstructor;
+import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Entity
 @AllArgsConstructor
 @NoArgsConstructor
+@Data
 public class Item {
     
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private int itemId;
 
     @Column(nullable = false)
     private String name;
@@ -32,4 +34,4 @@ public class Item {
 
 //  THE ITEMS DB IS WHERE ALL THE ITEMS WHICH THE STORE HAS ARE STORED
 // # Items Table
-// ID    NAME    DESCRIPTION    PRICE    AVAILABLE(maybe)
+// itemID    NAME    DESCRIPTION    PRICE    AVAILABLE(maybe)

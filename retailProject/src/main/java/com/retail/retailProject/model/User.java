@@ -13,9 +13,10 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class User {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private int userId;
 
     @Column(name = "username",unique = true, nullable = false)
     private String username;
@@ -25,6 +26,7 @@ public class User {
 
     private boolean isBlocked;
     private int countOfLogin;
+    
 
 }
 
