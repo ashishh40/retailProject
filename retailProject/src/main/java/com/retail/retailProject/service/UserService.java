@@ -1,6 +1,8 @@
 package com.retail.retailProject.service;
 import java.util.Optional;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
@@ -27,18 +29,37 @@ public class UserService {
 
     public ResponseEntity<String> addToCart(int userId,int itemId ){
         
-        Optional<User> user=userRepo.findById(userId);
-        Optional<Item> item=itemRepo.findById(itemId);
+        Optional<User> userOptional=userRepo.findById(userId);
+        Optional<Item> itemOptional=itemRepo.findById(itemId);
 
-        if(!user.isPresent() || !item.isPresent()){
+        if(!userOptional.isPresent() || !itemOptional.isPresent()){
             return ResponseEntity.badRequest().body("Either User or Item not found!");
         }
 
+        User user=userOptional.get();
+        Item item = itemOptional.get();
+
+        if(user.isBlocked()){
+            return ResponseEntity.badRequest().body("User is blocked!");
+        }
+
         Cart cart=new Cart();
-        cart.setItemId(itemId);
-        cart.setUserId(userId);
+        // cart.setItemId(itemId);
+        // cart.setUserId(userId);
+
+        cart.setItem(item);
+        cart.setUser(user);
 
         cartRepo.save(cart);
         return ResponseEntity.ok("Added to Cart successful!");
+    }
+
+    public List<Cart> getCart(int userId){
+        Optional<User> userOptional = userRepo.findById(userId);
+        if(userOptional.isEmpty()){
+            throw new IllegalArgumentException("User not found!");
+        }
+
+        return cartRepo.findByUser(userOptional.get());
     }
 }

@@ -29,5 +29,6 @@
 - added a endpoint which takes stores into the cart database the item which was stored and the user who stored it 
 - have to stop a blocked user from adding the item
 - will be working on cart endpoints next
-
+- Added the functionality that a blocked user cant add to cart 
+- Added the get endpoint which fetches the data for the cart table for a particular user
 
