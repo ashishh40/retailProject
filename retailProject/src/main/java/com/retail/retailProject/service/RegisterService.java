@@ -1,6 +1,7 @@
 package com.retail.retailProject.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -16,12 +17,13 @@ public class RegisterService {
 
     private final BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
 
-    public User registerUser(User user) {
+    public ResponseEntity<String> registerUser(User user) {
             if(repo.findByUsername(user.getUsername()).isPresent()){
                 throw new IllegalArgumentException("Username already exists.");
             }
             user.setPassword(passwordEncoder.encode(user.getPassword()));
-            return repo.save(user);
+             repo.save(user);
+             return ResponseEntity.ok("User login successful!"); 
     }
 
 }

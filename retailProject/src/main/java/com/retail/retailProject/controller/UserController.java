@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -12,14 +13,27 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.retail.retailProject.model.Cart;
+import com.retail.retailProject.model.Item;
+import com.retail.retailProject.repository.ItemRepository;
 import com.retail.retailProject.service.UserService;
 
+
+@CrossOrigin(origins = "http://localhost:5173")
 @RestController
 @RequestMapping("/api")
 public class UserController {
 
     @Autowired
     public UserService userService;
+
+
+     @Autowired
+    private ItemRepository itemRepository;
+
+    @GetMapping("/items")
+    public List<Item> getAllItems() {
+        return itemRepository.findAll();
+    }
 
     @PostMapping("/cart/{userId}/{itemId}")
     public ResponseEntity<String> addToCart(@PathVariable int userId,@PathVariable int itemId){

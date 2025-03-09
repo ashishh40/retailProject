@@ -26,6 +26,10 @@ public class User {
 
     private boolean isBlocked;
     private int countOfLogin;
+
+    @Column(nullable = false)
+    private boolean isAdmin;
+
     
 
 }
