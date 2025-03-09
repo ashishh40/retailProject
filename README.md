@@ -37,3 +37,9 @@
 
 
 
+
+
+- added the basic ui to register,login, main page
+- now user can register and login through ui
+- also user can see all the items on the page and  add to the cart 
+
