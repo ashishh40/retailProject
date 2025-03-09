@@ -38,8 +38,12 @@
 
 
 
-
+### 
 - added the basic ui to register,login, main page
 - now user can register and login through ui
 - also user can see all the items on the page and  add to the cart 
+- added the endpoint to get all the blocked users from admin side
+- added the endpoint to unblock a blocked user
+- need to figure out how to restrict user from accessing blocked list 
+
 
