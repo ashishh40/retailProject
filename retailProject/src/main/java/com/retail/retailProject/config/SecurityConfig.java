@@ -37,9 +37,6 @@ public class SecurityConfig {
     .authorizeRequests()
         .requestMatchers("/api/register","/api/items","/api/login/user", "/api/user", "/api/users/**").permitAll()  
         .anyRequest().permitAll();
-
-
-
         return http.build();
     }
 

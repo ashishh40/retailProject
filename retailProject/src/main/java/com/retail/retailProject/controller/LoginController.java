@@ -31,7 +31,6 @@ public class LoginController {
         } catch (Exception e) {
             return ResponseEntity.badRequest().body(Map.of("error", "Error: " + e.getMessage()));
         }
-
     }
 }
 

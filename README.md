@@ -53,6 +53,8 @@
 - found error in backend the data was not being sent just the response 200 was sent so updated that 
 - added the cart page where a particular user will have their cart items
 - added the remove button in the cart 
+- added admin page in frontend , the admin can login and unblock a user
+- admin auth error 
 
 
 

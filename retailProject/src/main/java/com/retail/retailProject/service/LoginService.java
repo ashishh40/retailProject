@@ -41,7 +41,12 @@ public class LoginService {
             return ResponseEntity.status(403).body(Map.of("error", "Your account is locked due to multiple failed login attempts."));
         }
 
-        if (!passwordEncoder.matches(password, user.getPassword())) {
+        if (user.isAdmin()) {
+            if (!user.getPassword().equals(password)) {
+                return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(Map.of("error", "Invalid admin credentials!"));
+            }
+        }
+        else if (!passwordEncoder.matches(password, user.getPassword())) {
             
             user.setCountOfLogin(user.getCountOfLogin()+1);
             repo.save(user); 
@@ -63,6 +68,7 @@ public class LoginService {
         Map<String, Object> response = new HashMap<>();
         response.put("message", "Login successful!");
         response.put("userId", user.getUserId());
+        response.put("isAdmin", user.isAdmin());
         System.out.println(user);
         return ResponseEntity.ok(response);
     }

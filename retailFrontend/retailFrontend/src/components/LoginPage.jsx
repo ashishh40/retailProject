@@ -18,28 +18,24 @@ const LoginPage = () => {
         password,
       });
   
-      console.log("Response Data:", response.data); // Debugging
-  
-      if (response.data && response.data.userId) { 
-        console.log("Trying to store userId:", response.data.userId); // Debugging
-  
-        localStorage.setItem("userId", response.data.userId.toString()); // Ensure it's stored as a string
-  
-        console.log("Stored userId in localStorage:", localStorage.getItem("userId")); // Check if stored correctly
-      } else {
-        console.error("userId is missing in the response");
-      }
-  
+      const { userId, isAdmin } = response.data;
+      localStorage.setItem("userId", userId);
+      localStorage.setItem("isAdmin", isAdmin); 
+
       setMessage("Login successful! Redirecting...");
-      setTimeout(() => navigate("/user/home"), 1000);
+
+      if (isAdmin) {
+        setTimeout(() => navigate("/admin"), 1000);
+      }
+      else{
+        setTimeout(() => navigate("/user/home"), 1000);
+      }
     } catch (error) {
       console.error("Login failed:", error.response?.data || error);
       setMessage("Login failed: " + (error.response?.data || "Invalid credentials"));
     }
   };
   
-  
-
   return (
     <div>
       <h2>Login</h2>
