@@ -94,4 +94,8 @@ public class UserService {
 
         return ResponseEntity.ok( totalAmount.toString());
     }
+
+    public List<Item> filterByCategory(String category) {
+        return itemRepo.findByCategory(category);
+    }
 }

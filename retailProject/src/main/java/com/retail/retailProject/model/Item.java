@@ -27,6 +27,9 @@ public class Item {
 
     @Column(nullable = false)
     private Double price;
+
+    @Column(nullable = false) 
+    private String category;
 }
 
 

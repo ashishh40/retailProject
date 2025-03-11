@@ -59,7 +59,12 @@ public class UserController {
     @GetMapping("/checkout/{userId}")
     public ResponseEntity<String> checkout(@PathVariable int userId){
         return userService.checkout(userId);
+    }
 
+
+    @GetMapping("/category/{category}")
+    public List<Item> filterByCategory(@PathVariable String category){
+        return userService.filterByCategory(category);
     }
 
 }
