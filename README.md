@@ -38,7 +38,7 @@
 
 
 
-### 
+### 10/03/2025 
 - added the basic ui to register,login, main page
 - now user can register and login through ui
 - also user can see all the items on the page and  add to the cart 
@@ -58,7 +58,8 @@
 - added a checkout page where total bill can be displayed
 - once the order is placed the cart has to be emptied will have to work on that    
 - added so that now the user cant add an item twice in a cart, an item has to be uniqued
-- adding filteBy endpoint 
+- adding filterBy endpoint 
+- added the filter by functionality in frontend 
 
 
 
