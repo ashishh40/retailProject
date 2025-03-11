@@ -3,7 +3,7 @@ import axios from "axios";
 
 const ItemList = () => {
   const [items, setItems] = useState([]);
-  const userId = 1;
+  const userId = localStorage.getItem("userId");
 
   useEffect(() => {
     axios.get("http://localhost:8080/api/items")
@@ -12,11 +12,15 @@ const ItemList = () => {
   }, []);
 
   const addToCart = async (itemId) => {
+    if (!userId) {
+      alert("User ID not found! Please log in.");
+      return;
+    }
     try {
-      const response = await axios.post(`http://localhost:8080/api/cart/${userId}/${itemId}`);
+      await axios.post(`http://localhost:8080/api/cart/${userId}/${itemId}`);
       alert("Item added to cart!");
     } catch (error) {
-      alert("Error: " +  "Could not add item");
+      alert("Error: Could not add item");
     }
   };
 

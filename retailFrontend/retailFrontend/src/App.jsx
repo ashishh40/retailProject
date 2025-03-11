@@ -4,6 +4,8 @@ import HomePage from "./components/HomePage";
 import RegisterPage from "./components/RegisterPage";
 import LoginPage from "./components/LoginPage";
 import UserHomePage from "./components/UserHomePage";
+import Cart from "./components/Cart";
+
 
 const App = () => {
   return (
@@ -12,6 +14,8 @@ const App = () => {
       <Route path="/register" element={<RegisterPage />} />
       <Route path="/login" element={<LoginPage />} />
       <Route path="/user/home" element={<UserHomePage />} />
+      <Route path="/user/cart" element={<Cart />} />
+
     </Routes>
   );
 };

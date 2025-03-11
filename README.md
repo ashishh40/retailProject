@@ -47,3 +47,12 @@
 - need to figure out how to restrict user from accessing blocked list 
 
 
+## 11/03/2025
+- solve - one user can add to cart only once
+- Adding a cart page in react
+- found error in backend the data was not being sent just the response 200 was sent so updated that 
+- added the cart page where a particular user will have their cart items
+- added the remove button in the cart 
+
+
+

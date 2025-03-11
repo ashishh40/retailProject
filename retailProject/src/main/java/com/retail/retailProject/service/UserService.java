@@ -45,6 +45,9 @@ public class UserService {
             return ResponseEntity.badRequest().body("User is blocked!");
         }
 
+
+        System.out.println("Adding to cart - UserId: " + user.getUserId() + ", ItemId: " + item.getItemId()); // for debugging
+
         Cart cart=new Cart();
         // cart.setItemId(itemId);
         // cart.setUserId(userId);

@@ -1,5 +1,7 @@
 package com.retail.retailProject.service;
 
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,19 +26,19 @@ public class LoginService {
     private int maxLoginAttempt=3;
 
 
-    public ResponseEntity<String> loginUser(String username, String password) {
+    public ResponseEntity<Map<String, Object>> loginUser(String username, String password) {
         Optional<User> userOptional = repo.findByUsername(username);
 
 
         if (userOptional.isEmpty()) {
-            return ResponseEntity.badRequest().body("User not found!");
+            return ResponseEntity.badRequest().body(Map.of("error", "User not found!"));
         }
 
 
         User user = userOptional.get();
 
         if (user.isBlocked()) {
-            return ResponseEntity.status(403).body("Your account is locked due to multiple failed login attempts.");
+            return ResponseEntity.status(403).body(Map.of("error", "Your account is locked due to multiple failed login attempts."));
         }
 
         if (!passwordEncoder.matches(password, user.getPassword())) {
@@ -49,7 +51,7 @@ public class LoginService {
                 user.setBlocked(true);
                 repo.save(user);
             }
-           return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Invalid credentials!");
+           return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(Map.of("error", "Invalid credentials!"));
 
         }
 
@@ -57,7 +59,11 @@ public class LoginService {
         user.setCountOfLogin(0);
         repo.save(user); 
 
+
+        Map<String, Object> response = new HashMap<>();
+        response.put("message", "Login successful!");
+        response.put("userId", user.getUserId());
         System.out.println(user);
-        return ResponseEntity.ok("Login successful!");
+        return ResponseEntity.ok(response);
     }
 }

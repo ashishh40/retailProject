@@ -1,5 +1,7 @@
 package com.retail.retailProject.controller;
 
+import java.util.Map;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -21,13 +23,13 @@ public class LoginController {
     public LoginService loginService;
 
     @PostMapping("/login/user")
-    public ResponseEntity<String> loginUser(@RequestBody User user){
+    public ResponseEntity<Map<String, Object>> loginUser(@RequestBody User user){
 
         try {
             return loginService.loginUser(user.getUsername(),user.getPassword());
             // return ResponseEntity.ok("User login successful!"+user.getUsername());  
         } catch (Exception e) {
-            return ResponseEntity.badRequest().body("Error: " + e.getMessage());
+            return ResponseEntity.badRequest().body(Map.of("error", "Error: " + e.getMessage()));
         }
 
     }
