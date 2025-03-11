@@ -28,20 +28,36 @@ const AdminPage = () => {
   };
 
   return (
-    <div>
-      <h2>Blocked Users</h2>
-      {blockedUsers.length === 0 ? (
-        <p>No blocked users found.</p>
-      ) : (
-        <ul>
-          {blockedUsers.map(user => (
-            <li key={user.userId}>
-              <span>{user.username} (ID: {user.userId})</span>
-              <button onClick={() => unblockUser(user.userId)}>Unblock</button>
-            </li>
-          ))}
-        </ul>
-      )}
+    <div style={{ display: "flex", justifyContent: "center", alignItems: "center", height: "100vh" }}>
+      <div style={{ textAlign: "center", border: "3px solid black", padding: "50px", minWidth: "400px" }}>
+        <h1 style={{ marginBottom: "30px", fontSize: "32px" }}>Blocked Users</h1>
+        {blockedUsers.length === 0 ? (
+          <p style={{ fontSize: "20px" }}>No blocked users found.</p>
+        ) : (
+          <ul style={{ listStyleType: "none", padding: "0" }}>
+            {blockedUsers.map(user => (
+              <li key={user.userId} style={{ fontSize: "18px", marginBottom: "15px" }}>
+                <span>{user.username} (ID: {user.userId})</span>
+                <button 
+                  onClick={() => unblockUser(user.userId)} 
+                  style={{ 
+                    fontSize: "16px", 
+                    padding: "8px 15px", 
+                    marginLeft: "15px", 
+                    cursor: "pointer", 
+                    border: "none", 
+                    background: "black", 
+                    color: "white", 
+                    borderRadius: "5px" 
+                  }}
+                >
+                  Unblock
+                </button>
+              </li>
+            ))}
+          </ul>
+        )}
+      </div>
     </div>
   );
 };

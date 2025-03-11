@@ -19,7 +19,7 @@ const RegisterPage = () => {
       });
 
       setMessage("Registration successful! Redirecting...");
-      setTimeout(() => navigate("/login"), 1500);
+      setTimeout(() => navigate("/login"), 1000);
     } catch (error) {
       setMessage("Registration failed: " + (error.response?.data?.message || "Something went wrong"));
     }
