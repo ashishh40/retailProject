@@ -56,15 +56,13 @@ public class UserController {
     }
 
 
-    @PostMapping("/checkout/{userId}")
+    @GetMapping("/checkout/{userId}")
     public ResponseEntity<String> checkout(@PathVariable int userId){
         return userService.checkout(userId);
 
     }
 
 }
-
-
 
 // Will handle all the user endpoints on the user page 
 // like    adding to cart , deleting from cart 

@@ -48,6 +48,12 @@ public class UserService {
 
         System.out.println("Adding to cart - UserId: " + user.getUserId() + ", ItemId: " + item.getItemId()); // for debugging
 
+
+        Optional<Cart> existingCartItem = cartRepo.findByUserAndItem(user, item);
+        if (existingCartItem.isPresent()) {
+            return ResponseEntity.badRequest().body("Item is already in the cart.");
+        }
+
         Cart cart=new Cart();
         // cart.setItemId(itemId);
         // cart.setUserId(userId);
@@ -83,6 +89,8 @@ public class UserService {
         List<Cart> cartList=cartRepo.findByUser(user);
 
         Double totalAmount = cartList.stream().mapToDouble(cart-> cart.getItem().getPrice()).sum();
+
+        cartRepo.deleteAll(cartList);
 
         return ResponseEntity.ok( totalAmount.toString());
     }

@@ -6,6 +6,10 @@ import LoginPage from "./components/LoginPage";
 import UserHomePage from "./components/UserHomePage";
 import Cart from "./components/Cart";
 import AdminPage from "./components/AdminPage";
+import CheckoutPage from "./components/CheckoutPage";
+import ThankyouPage from "./components/ThankyouPage";
+
+
 
 
 
@@ -18,6 +22,10 @@ const App = () => {
       <Route path="/user/home" element={<UserHomePage />} />
       <Route path="/user/cart" element={<Cart />} />
       <Route path="/admin" element={<AdminPage />} />
+      <Route path="/checkout" element={<CheckoutPage />} />
+      <Route path="/thankyou" element={<ThankyouPage />} />
+
+
     </Routes>
   );
 };

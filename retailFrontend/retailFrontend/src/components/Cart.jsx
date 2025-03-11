@@ -1,9 +1,14 @@
 import { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
+
 import axios from "axios";
 
 const Cart = () => {
   const [cart, setCart] = useState([]);
   const userId = localStorage.getItem("userId");
+
+  const navigate = useNavigate();
+
 
   useEffect(() => {
     if (!userId) {
@@ -30,14 +35,17 @@ const Cart = () => {
       {cart.length === 0 ? (
         <p>Your cart is empty.</p>
       ) : (
-        cart.map(item => (
-          <div key={item.item.itemId} style={{ border: "1px solid black", padding: "10px", margin: "10px" }}>
-            <h4>{item.item.name}</h4>
-            <p>{item.item.description}</p>
-            <p>Price: ${item.item.price}</p>
-            <button onClick={() => removeFromCart(item.item.itemId)}>Remove</button>
-          </div>
-        ))
+        <>
+          {cart.map(item => (
+            <div key={item.item.itemId} style={{ border: "1px solid black", padding: "10px", margin: "10px" }}>
+              <h4>{item.item.name}</h4>
+              <p>{item.item.description}</p>
+              <p>Price: ${item.item.price}</p>
+              <button onClick={() => removeFromCart(item.item.itemId)}>Remove</button>
+            </div>
+          ))}
+          <button onClick={() => navigate("/checkout")}>Proceed to Checkout</button>
+        </>
       )}
     </div>
   );

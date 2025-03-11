@@ -48,13 +48,16 @@
 
 
 ## 11/03/2025
-- solve - one user can add to cart only once
+- solve - one user can add to cart only once      -done 
 - Adding a cart page in react
 - found error in backend the data was not being sent just the response 200 was sent so updated that 
 - added the cart page where a particular user will have their cart items
 - added the remove button in the cart 
 - added admin page in frontend , the admin can login and unblock a user
-- admin auth error 
+- admin auth error    - remaining
+- added a checkout page where total bill can be displayed
+- once the order is placed the cart has to be emptied will have to work on that    - remaining
+- added so that now the user cant add an item twice in a cart, an item has to be uniqued
 
 
 

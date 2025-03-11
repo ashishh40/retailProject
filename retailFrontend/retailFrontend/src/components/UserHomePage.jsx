@@ -1,9 +1,12 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
+
 
 const ItemList = () => {
   const [items, setItems] = useState([]);
   const userId = localStorage.getItem("userId");
+  const navigate = useNavigate();
 
   useEffect(() => {
     axios.get("http://localhost:8080/api/items")
@@ -20,13 +23,18 @@ const ItemList = () => {
       await axios.post(`http://localhost:8080/api/cart/${userId}/${itemId}`);
       alert("Item added to cart!");
     } catch (error) {
-      alert("Error: Could not add item");
+      alert(error.response?.data || "Error: Could not add item");
     }
   };
 
   return (
-    <div>
-      <h2>Items</h2>
+    <div>  
+      <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
+        <h2>Items</h2>
+        <button onClick={() => navigate("/user/cart")} style={{ padding: "5px 10px", cursor: "pointer" }}>
+          Go to Cart 
+        </button>
+      </div>
       {items.length === 0 ? (
         <p>Loading items...</p>
       ) : (
