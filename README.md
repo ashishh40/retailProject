@@ -62,4 +62,9 @@
 - added the filter by functionality in frontend 
 
 
+### 12/03/2025
+- Learned about the logback framework and its utilities
+- implemented logback in all the services
+
+
 

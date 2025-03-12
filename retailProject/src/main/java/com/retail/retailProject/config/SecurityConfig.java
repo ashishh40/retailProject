@@ -14,24 +14,7 @@ public class SecurityConfig {
 
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
-        // http
-        //     .csrf().disable()
-        //     .authorizeHttpRequests(auth -> auth
-        //         .requestMatchers("/api/public/**").permitAll()  // Public endpoints
-        //         .requestMatchers("/api/user/**").authenticated()  // User-specific endpoints
-        //         .requestMatchers("/api/admin/**").hasRole("ADMIN")  // Admin access only
-        //         .anyRequest().authenticated()  // Default: require authentication
-        //     )
-        //     .formLogin().disable()
-        //     .httpBasic();  // Enable basic authentication for simplicity
-    //     http
-    // .csrf().disable()  
-    // .authorizeRequests()
-    //     .requestMatchers("/api/user","/api/register", "/api/users/**").permitAll()  
-    //     .anyRequest().permitAll()  
-    // .and()
-    // .formLogin().disable()  
-    // .httpBasic().disable();
+        
     http
     .csrf().disable()  
     .authorizeRequests()
